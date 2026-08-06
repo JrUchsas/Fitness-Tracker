@@ -20,6 +20,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/goals', [WorkoutController::class, 'updateGoals'])->name('goals.update');
     Route::post('/weight-logs', [WeightLogController::class, 'store'])->name('weight-logs.store');
     Route::delete('/weight-logs/{weightLog}', [WeightLogController::class, 'destroy'])->name('weight-logs.destroy');
+
+    Route::get('/export-db', function () {
+        $dbPath = file_exists('/var/data/database.sqlite')
+            ? '/var/data/database.sqlite'
+            : database_path('database.sqlite');
+
+        if (! file_exists($dbPath)) {
+            abort(404, 'Database file not found.');
+        }
+
+        return response()->download($dbPath, 'database.sqlite');
+    })->name('export-db');
 });
 
 Route::middleware('auth')->group(function () {
