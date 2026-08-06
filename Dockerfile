@@ -31,4 +31,4 @@ RUN npm install && npm run build
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "mkdir -p /var/data && (test -f /var/data/database.sqlite || cp database/database.sqlite /var/data/database.sqlite) && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["sh", "-c", "mkdir -p /var/data && (test -f database/database.sqlite && cp database/database.sqlite /var/data/database.sqlite || touch /var/data/database.sqlite) && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
