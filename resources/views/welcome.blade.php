@@ -43,19 +43,19 @@
                     </a>
 
                     {{-- Actions --}}
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
                         @if (Route::has('login'))
                             @auth
-                                <a href="{{ route('dashboard') }}" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition duration-150">
-                                    Go to Dashboard &rarr;
+                                <a href="{{ route('dashboard') }}" class="whitespace-nowrap px-4 sm:px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-500/25 transition duration-150">
+                                    Dashboard &rarr;
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="px-4 py-2 rounded-xl text-slate-300 hover:text-white font-semibold text-sm transition duration-150">
+                                <a href="{{ route('login') }}" class="whitespace-nowrap px-3 sm:px-4 py-2 rounded-xl text-slate-300 hover:text-white font-semibold text-xs sm:text-sm transition duration-150">
                                     Log in
                                 </a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition duration-150 transform hover:-translate-y-0.5">
+                                    <a href="{{ route('register') }}" class="whitespace-nowrap px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-500/25 transition duration-150 transform hover:-translate-y-0.5">
                                         Get Started Free
                                     </a>
                                 @endif
@@ -89,17 +89,17 @@
                         </p>
 
                         {{-- Primary Buttons --}}
-                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <div class="pt-2 flex flex-row items-center justify-center gap-3 sm:gap-4 flex-nowrap">
                             @auth
-                                <a href="{{ route('dashboard') }}" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-black text-base rounded-2xl shadow-xl shadow-indigo-500/30 transform hover:-translate-y-0.5 transition duration-150">
+                                <a href="{{ route('dashboard') }}" class="whitespace-nowrap px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-indigo-500/30 transform hover:-translate-y-0.5 transition duration-150">
                                     Open Your Dashboard &rarr;
                                 </a>
                             @else
-                                <a href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-black text-base rounded-2xl shadow-xl shadow-indigo-500/30 transform hover:-translate-y-0.5 transition duration-150">
-                                    Start Logging Workouts Free &rarr;
+                                <a href="{{ route('register') }}" class="whitespace-nowrap px-5 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-xl shadow-indigo-500/30 transform hover:-translate-y-0.5 transition duration-150">
+                                    Get Started Free &rarr;
                                 </a>
-                                <a href="{{ route('login') }}" class="w-full sm:w-auto px-8 py-4 bg-slate-900/90 border border-slate-800 hover:border-slate-700 text-slate-200 hover:text-white font-bold text-base rounded-2xl transition duration-150">
-                                    Sign In to Account
+                                <a href="{{ route('login') }}" class="whitespace-nowrap px-5 sm:px-8 py-3.5 sm:py-4 bg-slate-900/90 border border-slate-800 hover:border-slate-700 text-slate-200 hover:text-white font-bold text-sm sm:text-base rounded-2xl transition duration-150">
+                                    Log in
                                 </a>
                             @endauth
                         </div>

@@ -123,11 +123,11 @@
                         <x-input-error :messages="$errors->get('notes')" class="mt-1" />
                     </div>
 
-                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-                        <a href="{{ route('dashboard') }}" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm rounded-xl transition duration-150">
+                    <div class="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-3 pt-4 border-t border-slate-800">
+                        <a href="{{ route('dashboard') }}" class="w-full sm:w-auto text-center px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm rounded-xl transition duration-150">
                             Cancel
                         </a>
-                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-500/25 transition duration-150 cursor-pointer">
+                        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-500/25 transition duration-150 cursor-pointer">
                             Update Workout Session
                         </button>
                     </div>

@@ -88,33 +88,50 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4">
-        <div class="space-y-1">
-            <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-lg text-base font-medium {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
-                {{ __('Dashboard') }}
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 px-4 pt-3 pb-5 transition-all">
+        <div class="space-y-1.5">
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-base font-semibold transition duration-150 {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span>{{ __('Dashboard') }}</span>
             </a>
-            <a href="{{ route('analytics') }}" class="block px-3 py-2 rounded-lg text-base font-medium {{ request()->routeIs('analytics') ? 'bg-indigo-600/20 text-indigo-400 font-bold' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
-                {{ __('Analytics & Charts') }}
+            <a href="{{ route('analytics') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-base font-semibold transition duration-150 {{ request()->routeIs('analytics') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <span>{{ __('Analytics & Charts') }}</span>
             </a>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 mt-3 border-t border-slate-800">
-            <div class="px-3 mb-3">
-                <div class="font-bold text-base text-white">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-xs text-slate-400">{{ Auth::user()->email }}</div>
+        <div class="pt-4 mt-3 border-t border-slate-800/80">
+            <div class="flex items-center gap-3 px-3 mb-3">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white text-sm font-bold shadow-sm">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                </div>
+                <div class="overflow-hidden">
+                    <div class="font-bold text-sm text-white truncate">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-xs text-slate-400 truncate">{{ Auth::user()->email }}</div>
+                </div>
             </div>
 
             <div class="space-y-1">
-                <a href="{{ route('profile.edit') }}" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white">
-                    {{ __('Profile Settings') }}
+                <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-150">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                    <span>{{ __('Profile Settings') }}</span>
                 </a>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="w-full text-left block px-3 py-2 rounded-lg text-sm font-semibold text-red-400 hover:bg-red-950/40 hover:text-red-300">
-                        {{ __('Log Out') }}
+                    <button type="submit" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-red-400 hover:bg-red-950/40 hover:text-red-300 transition duration-150 cursor-pointer">
+                        <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                        <span>{{ __('Log Out') }}</span>
                     </button>
                 </form>
             </div>

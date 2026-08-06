@@ -36,7 +36,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
             {{-- Metric Highlight Badges Grid --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
                 <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Body Weight</span>
                     <h4 class="text-2xl font-black text-cyan-400 mt-1">{{ $latestWeight ? number_format($latestWeight, 1) : '--' }} <span class="text-xs font-normal text-slate-400">kg</span></h4>

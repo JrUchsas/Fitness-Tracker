@@ -59,7 +59,7 @@
             @endif
 
             {{-- Summary Cards Row --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
                 
                 {{-- Card 1: Total Active Time --}}
                 <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
