@@ -463,17 +463,10 @@
                             </div>
                         </template>
 
-                        {{-- Calories Input (Auto-calculated / manual) --}}
+                        {{-- Calories Input (Manual Entry) --}}
                         <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <label for="calories_burned" class="block text-xs font-semibold uppercase tracking-wider text-slate-300">Calories (kcal)</label>
-                                <template x-if="isCardio">
-                                    <span class="text-[10px] font-bold text-amber-400 flex items-center gap-1 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
-                                        ⚡ Auto-predicted
-                                    </span>
-                                </template>
-                            </div>
-                            <input id="calories_burned" type="number" min="0" max="20000" name="calories_burned" x-model="calories" placeholder="Auto-calculated for cycling & treadmill" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm py-3 px-3.5 transition duration-150" />
+                            <label for="calories_burned" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Calories (kcal)</label>
+                            <input id="calories_burned" type="number" min="0" max="20000" name="calories_burned" value="{{ old('calories_burned') }}" placeholder="e.g. 100" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm py-3 px-3.5 transition duration-150" />
                             <x-input-error :messages="$errors->get('calories_burned')" class="mt-1" />
                         </div>
 
@@ -666,32 +659,6 @@
                     if (!this.isCardio) {
                         this.distance = '';
                         this.speed = '';
-                    }
-                    this.recalculate();
-                },
-
-                onDistanceInput() {
-                    this.recalculate();
-                },
-
-                onSpeedInput() {
-                    this.recalculate();
-                },
-
-                recalculate() {
-                    if (!this.isCardio) return;
-
-                    const dur = parseFloat(this.duration) || 0;
-                    const spd = parseFloat(this.speed) || (this.distance && dur ? parseFloat(this.distance) / (dur / 60) : 0);
-
-                    if (dur > 0) {
-                        let cal = 0;
-                        if (this.type === 'Indoor Cycling') {
-                            cal = dur * (spd ? (spd * 0.55 + 3.0) : 7.5);
-                        } else { // Treadmill
-                            cal = dur * (spd ? (spd * 0.95 + 2.5) : 8.5);
-                        }
-                        this.calories = Math.round(cal);
                     }
                 }
             }));

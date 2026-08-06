@@ -158,13 +158,14 @@ test('user can select an active week offset to view weekly summary stats', funct
     $response->assertStatus(200);
     $response->assertSee('90');
     $response->assertSee('20.00');
-test('calories and speed are auto predicted for cycling and treadmill if omitted', function () {
+test('user can log a workout with manual calories and custom metrics', function () {
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)->post('/workouts', [
         'type' => 'Indoor Cycling',
         'duration_minutes' => 60,
         'distance_km' => 20.0,
+        'calories_burned' => 450,
         'workout_date' => now()->format('Y-m-d H:i:s'),
     ]);
 
@@ -175,11 +176,8 @@ test('calories and speed are auto predicted for cycling and treadmill if omitted
         'type' => 'Indoor Cycling',
         'duration_minutes' => 60,
         'distance_km' => 20.0,
-        'speed_kmh' => 20.0,
+        'calories_burned' => 450,
     ]);
-
-    $workout = Workout::where('user_id', $user->id)->first();
-    expect($workout->calories_burned)->toBeGreaterThan(0);
 });
 
 test('user can update weekly fitness goals', function () {

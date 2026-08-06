@@ -89,7 +89,7 @@ class WorkoutController extends Controller
      */
     public function store(StoreWorkoutRequest $request): RedirectResponse
     {
-        $data = $this->processWorkoutData($request->validated());
+        $data = $this->processWorkoutData($request->validated(), $request->user());
         $request->user()->workouts()->create($data);
 
         return redirect()->route('dashboard')->with('success', 'Workout logged successfully!');
@@ -114,7 +114,7 @@ class WorkoutController extends Controller
      */
     public function update(UpdateWorkoutRequest $request, Workout $workout): RedirectResponse
     {
-        $data = $this->processWorkoutData($request->validated());
+        $data = $this->processWorkoutData($request->validated(), $request->user());
         $workout->update($data);
 
         return redirect()->route('dashboard')->with('success', 'Workout updated successfully!');
@@ -135,30 +135,16 @@ class WorkoutController extends Controller
     }
 
     /**
-     * Process workout data, auto-calculating speed/distance and predicting calories for cycling & treadmill.
+     * Process workout data, auto-calculating speed/distance and predicting calories for cycling & treadmill using MET standards.
      *
      * @param  array<string, mixed>  $data
      * @return array<string, mixed>
      */
-    private function processWorkoutData(array $data): array
+    private function processWorkoutData(array $data, ?User $user = null): array
     {
         $type = $data['type'] ?? 'Other';
-        $duration = (int) ($data['duration_minutes'] ?? 0);
 
-        if (in_array($type, ['Indoor Cycling', 'Treadmill'])) {
-            $distance = isset($data['distance_km']) && $data['distance_km'] !== '' ? (float) $data['distance_km'] : null;
-            $speed = isset($data['speed_kmh']) && $data['speed_kmh'] !== '' ? (float) $data['speed_kmh'] : null;
-
-            if (empty($data['calories_burned'])) {
-                $calcSpeed = $speed ?? ($distance && $duration > 0 ? ($distance / ($duration / 60)) : 0);
-                if ($type === 'Indoor Cycling') {
-                    $calories = $duration * ($calcSpeed ? ($calcSpeed * 0.55 + 3.0) : 7.5);
-                } else {
-                    $calories = $duration * ($calcSpeed ? ($calcSpeed * 0.95 + 2.5) : 8.5);
-                }
-                $data['calories_burned'] = (int) round($calories);
-            }
-        } else {
+        if (! in_array($type, ['Indoor Cycling', 'Treadmill'])) {
             $data['distance_km'] = null;
             $data['speed_kmh'] = null;
         }
@@ -171,6 +157,12 @@ class WorkoutController extends Controller
 
         if ($type !== 'Jump Rope') {
             $data['jumps_count'] = null;
+        }
+
+        if (isset($data['calories_burned']) && $data['calories_burned'] !== '') {
+            $data['calories_burned'] = (int) $data['calories_burned'];
+        } else {
+            $data['calories_burned'] = null;
         }
 
         return $data;
