@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        {{-- Extra Personal Info: Gender, Age, Weight (3 cols) --}}
+        {{-- Personal & Health Metrics: Gender, Age, Height, Weight, Activity Level --}}
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-2">
             <div>
                 <x-input-label for="gender" :value="__('Gender')" />
@@ -65,14 +65,34 @@
 
             <div>
                 <x-input-label for="age" :value="__('Age (years)')" />
-                <x-text-input id="age" name="age" type="number" min="1" max="120" placeholder="e.g. 25" class="mt-1.5 block w-full" :value="old('age', $user->age)" />
+                <x-text-input id="age" name="age" type="number" step="1" pattern="\d*" min="1" max="120" placeholder="e.g. 25" class="mt-1.5 block w-full" :value="old('age', $user->age)" />
                 <x-input-error class="mt-1" :messages="$errors->get('age')" />
             </div>
 
             <div>
+                <x-input-label for="height_cm" :value="__('Height (cm)')" />
+                <x-text-input id="height_cm" name="height_cm" type="number" step="any" min="50" max="300" placeholder="e.g. 177.8" class="mt-1.5 block w-full" :value="old('height_cm', $user->height_cm)" />
+                <x-input-error class="mt-1" :messages="$errors->get('height_cm')" />
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
                 <x-input-label for="weight_kg" :value="__('Body Weight (kg)')" />
-                <x-text-input id="weight_kg" name="weight_kg" type="number" step="0.1" min="1" max="500" placeholder="e.g. 70.5" class="mt-1.5 block w-full" :value="old('weight_kg', $user->weight_kg)" />
+                <x-text-input id="weight_kg" name="weight_kg" type="number" step="any" min="1" max="500" placeholder="e.g. 70 or 70.5" class="mt-1.5 block w-full" :value="old('weight_kg', $user->weight_kg)" />
                 <x-input-error class="mt-1" :messages="$errors->get('weight_kg')" />
+            </div>
+
+            <div>
+                <x-input-label for="activity_level" :value="__('Daily Activity Level')" />
+                <select id="activity_level" name="activity_level" class="mt-1.5 block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm py-3 px-3.5 transition duration-150">
+                    <option value="sedentary" {{ old('activity_level', $user->activity_level ?? 'moderately_active') === 'sedentary' ? 'selected' : '' }}>Sedentary (Little or no exercise)</option>
+                    <option value="lightly_active" {{ old('activity_level', $user->activity_level ?? 'moderately_active') === 'lightly_active' ? 'selected' : '' }}>Lightly Active (1-3 days/week)</option>
+                    <option value="moderately_active" {{ old('activity_level', $user->activity_level ?? 'moderately_active') === 'moderately_active' ? 'selected' : '' }}>Moderately Active (3-5 days/week)</option>
+                    <option value="very_active" {{ old('activity_level', $user->activity_level ?? 'moderately_active') === 'very_active' ? 'selected' : '' }}>Very Active (6-7 days/week)</option>
+                    <option value="extra_active" {{ old('activity_level', $user->activity_level ?? 'moderately_active') === 'extra_active' ? 'selected' : '' }}>Extra Active (Hard physical job/training)</option>
+                </select>
+                <x-input-error class="mt-1" :messages="$errors->get('activity_level')" />
             </div>
         </div>
 

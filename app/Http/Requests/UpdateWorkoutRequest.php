@@ -26,8 +26,10 @@ class UpdateWorkoutRequest extends FormRequest
     {
         if ($this->has('workout_date') && $this->workout_date) {
             try {
-                if (preg_match('/^\d{2}\/\d{2}\/\d{4}/', $this->workout_date)) {
+                if (preg_match('/^\d{2}\/\d{2}\/\d{4}\s+\d{2}:\d{2}/', $this->workout_date)) {
                     $formatted = Carbon::createFromFormat('d/m/Y H:i', $this->workout_date)->format('Y-m-d H:i:s');
+                } elseif (preg_match('/^\d{2}\/\d{2}\/\d{4}/', $this->workout_date)) {
+                    $formatted = Carbon::createFromFormat('d/m/Y', $this->workout_date)->startOfDay()->format('Y-m-d H:i:s');
                 } else {
                     $formatted = Carbon::parse($this->workout_date)->format('Y-m-d H:i:s');
                 }

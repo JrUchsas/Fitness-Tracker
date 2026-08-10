@@ -167,7 +167,11 @@
                     dateFormat: 'd/m/Y H:i',
                     altInput: true,
                     altFormat: 'd/m/Y h:i K',
-                    time_24hr: false
+                    time_24hr: false,
+                    closeOnSelect: true,
+                    onChange: function(selectedDates, dateStr, instance) {
+                        instance.close();
+                    }
                 });
             }
         });

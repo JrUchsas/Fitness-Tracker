@@ -28,7 +28,9 @@ class ProfileUpdateRequest extends FormRequest
             ],
             'gender' => ['nullable', 'string', Rule::in(['Male', 'Female', 'Other', 'Prefer not to say'])],
             'age' => ['nullable', 'integer', 'min:1', 'max:120'],
+            'height_cm' => ['nullable', 'numeric', 'min:50', 'max:300'],
             'weight_kg' => ['nullable', 'numeric', 'min:1', 'max:500'],
+            'activity_level' => ['nullable', 'string', Rule::in(['sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'])],
         ];
     }
 }

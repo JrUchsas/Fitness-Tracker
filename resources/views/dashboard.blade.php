@@ -214,6 +214,172 @@
 
             </div>
 
+
+
+            {{-- Health & Fitness Metrics Card (BMI, BMR, TDEE, Ideal Weight) --}}
+            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl" x-data="{ openHealthModal: false }">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-800 gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                            <span class="text-emerald-400">⚕️</span> Automatic Health & Biometric Metrics
+                        </h3>
+                        <p class="text-xs text-slate-400">Calculated BMI, resting BMR, maintenance TDEE, and ideal weight benchmarks</p>
+                    </div>
+                    <button type="button" @click="openHealthModal = true" class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-bold transition duration-150 flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-600/20 self-start sm:self-auto">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                        Update Biometrics
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+                    {{-- 1. BMI Card --}}
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Body Mass Index</span>
+                            @php $bmiCat = Auth::user()->bmi_category; @endphp
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border {{ $bmiCat['class'] }}">
+                                {{ $bmiCat['label'] }}
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-black text-white">
+                                {{ Auth::user()->bmi ? number_format(Auth::user()->bmi, 1) : '--' }}
+                                <span class="text-xs font-normal text-slate-400">kg/m²</span>
+                            </h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Height: {{ Auth::user()->height_cm ? (Auth::user()->height_cm == round(Auth::user()->height_cm) ? number_format(Auth::user()->height_cm) : number_format(Auth::user()->height_cm, 1)).' cm' : 'Not set' }}</p>
+                        </div>
+                        {{-- Gauge Visual Indicator --}}
+                        <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden flex border border-slate-800">
+                            <div class="bg-blue-500 h-full w-[25%]" title="Underweight (<18.5)"></div>
+                            <div class="bg-emerald-500 h-full w-[35%]" title="Normal (18.5-24.9)"></div>
+                            <div class="bg-amber-500 h-full w-[25%]" title="Overweight (25-29.9)"></div>
+                            <div class="bg-rose-500 h-full w-[15%]" title="Obese (>=30)"></div>
+                        </div>
+                    </div>
+
+                    {{-- 2. BMR Card --}}
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Resting BMR</span>
+                            <span class="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center text-xs font-bold">🔥</span>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-black text-orange-400">
+                                {{ Auth::user()->bmr ? number_format(Auth::user()->bmr) : '--' }}
+                                <span class="text-xs font-normal text-slate-400">kcal/day</span>
+                            </h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Baseline calories burned at rest</p>
+                        </div>
+                        <div class="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> Mifflin-St Jeor standard
+                        </div>
+                    </div>
+
+                    {{-- 3. Maintenance TDEE Card --}}
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Daily Maintenance (TDEE)</span>
+                            <span class="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xs font-bold">⚡</span>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-black text-indigo-400">
+                                {{ Auth::user()->tdee ? number_format(Auth::user()->tdee) : '--' }}
+                                <span class="text-xs font-normal text-slate-400">kcal/day</span>
+                            </h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Activity: <span class="text-slate-200 font-semibold uppercase text-[10px]">{{ str_replace('_', ' ', Auth::user()->activity_level ?? 'moderately_active') }}</span></p>
+                        </div>
+                        <div class="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Calorie maintenance target
+                        </div>
+                    </div>
+
+                    {{-- 4. Ideal Target Weight Card --}}
+                    <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Ideal Target Weight</span>
+                            <span class="w-7 h-7 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center text-xs font-bold">🎯</span>
+                        </div>
+                        @php $ideal = Auth::user()->ideal_weight_range; @endphp
+                        <div>
+                            <h4 class="text-2xl font-black text-teal-400">
+                                @if($ideal)
+                                    {{ $ideal['min'] }} - {{ $ideal['max'] }} <span class="text-xs font-normal text-slate-400">kg</span>
+                                @else
+                                    -- <span class="text-xs font-normal text-slate-400">kg</span>
+                                @endif
+                            </h4>
+                            <p class="text-[11px] text-slate-400 mt-1">
+                                Optimal weight: <span class="text-white font-bold">{{ $ideal ? $ideal['ideal'].' kg' : 'Set height first' }}</span>
+                            </p>
+                        </div>
+                        <div class="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span> Normal BMI range (18.5 - 24.9)
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Update Health Profile Popup Modal --}}
+                <div x-show="openHealthModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                    <div @click.away="openHealthModal = false" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl space-y-5" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                            <div>
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <span class="text-emerald-400">⚕️</span> Update Health & Biometric Profile
+                                </h3>
+                                <p class="text-xs text-slate-400">Configure your parameters for accurate BMI & BMR</p>
+                            </div>
+                            <button type="button" @click="openHealthModal = false" class="text-slate-400 hover:text-white text-lg">&times;</button>
+                        </div>
+
+                        <form action="{{ route('health-profile.update') }}" method="POST" class="space-y-4">
+                            @csrf
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Height (cm)</label>
+                                    <input type="number" step="any" name="height_cm" value="{{ Auth::user()->height_cm }}" min="50" max="300" placeholder="e.g. 177.8" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 text-sm py-2.5 px-3" required />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Current Weight (kg)</label>
+                                    <input type="number" step="any" name="weight_kg" value="{{ Auth::user()->weight_kg }}" min="1" max="500" placeholder="e.g. 72 or 72.5" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 text-sm py-2.5 px-3" required />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Age (Years)</label>
+                                    <input type="number" step="1" pattern="\d*" name="age" value="{{ Auth::user()->age ?? 25 }}" min="1" max="120" placeholder="e.g. 28" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 text-sm py-2.5 px-3" required />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Gender</label>
+                                    <select name="gender" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 text-sm py-2.5 px-3">
+                                        <option value="Male" {{ Auth::user()->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ Auth::user()->gender === 'Female' ? 'selected' : '' }}>Female</option>
+                                        <option value="Other" {{ Auth::user()->gender === 'Other' ? 'selected' : '' }}>Other</option>
+                                        <option value="Prefer not to say" {{ Auth::user()->gender === 'Prefer not to say' ? 'selected' : '' }}>Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Daily Activity Level</label>
+                                <select name="activity_level" class="block w-full rounded-xl border border-slate-800 bg-slate-950/80 text-slate-100 text-sm py-2.5 px-3">
+                                    <option value="sedentary" {{ (Auth::user()->activity_level ?? 'moderately_active') === 'sedentary' ? 'selected' : '' }}>Sedentary (Little or no exercise)</option>
+                                    <option value="lightly_active" {{ (Auth::user()->activity_level ?? 'moderately_active') === 'lightly_active' ? 'selected' : '' }}>Lightly Active (1-3 days/week)</option>
+                                    <option value="moderately_active" {{ (Auth::user()->activity_level ?? 'moderately_active') === 'moderately_active' ? 'selected' : '' }}>Moderately Active (3-5 days/week)</option>
+                                    <option value="very_active" {{ (Auth::user()->activity_level ?? 'moderately_active') === 'very_active' ? 'selected' : '' }}>Very Active (6-7 days/week)</option>
+                                    <option value="extra_active" {{ (Auth::user()->activity_level ?? 'moderately_active') === 'extra_active' ? 'selected' : '' }}>Extra Active (Hard physical job/training)</option>
+                                </select>
+                            </div>
+
+                            <div class="flex justify-end gap-3 pt-3 border-t border-slate-800">
+                                <button type="button" @click="openHealthModal = false" class="px-4 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl">Cancel</button>
+                                <button type="submit" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl cursor-pointer">Save Biometrics</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             {{-- Weekly Goals Progress Section & Trophy Room --}}
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" x-data="{ openGoalsModal: false }">
                 
@@ -638,7 +804,7 @@
 
             </div>
 
-        </div>
+
     </div>
 
     {{-- Interactive Form Alpine Component Script --}}
@@ -671,13 +837,21 @@
                     dateFormat: 'd/m/Y H:i',
                     altInput: true,
                     altFormat: 'd/m/Y h:i K',
-                    time_24hr: false
+                    time_24hr: false,
+                    closeOnSelect: true,
+                    onChange: function(selectedDates, dateStr, instance) {
+                        instance.close();
+                    }
                 });
 
                 flatpickr('#weight_logged_date', {
                     dateFormat: 'd/m/Y',
                     altInput: true,
-                    altFormat: 'd/m/Y'
+                    altFormat: 'd/m/Y',
+                    closeOnSelect: true,
+                    onChange: function(selectedDates, dateStr, instance) {
+                        instance.close();
+                    }
                 });
             }
         });

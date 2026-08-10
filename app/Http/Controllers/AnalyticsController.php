@@ -43,7 +43,7 @@ class AnalyticsController extends Controller
         $dailyDuration = [];
 
         for ($i = $selectedDays - 1; $i >= 0; $i--) {
-            $date = now()->subDays($i);
+            $date = now()->setTimezone('Asia/Dhaka')->subDays($i);
             $dateStr = $date->format('Y-m-d');
             $dailyLabels[] = $date->format('d/m/Y');
 
@@ -127,7 +127,7 @@ class AnalyticsController extends Controller
             $weightData[] = (float) $log->weight_kg;
         }
 
-        $allWeightLogs = $user->weightLogs()->get();
+        $allWeightLogs = $user->weightLogs()->orderBy('logged_date', 'asc')->orderBy('id', 'asc')->get();
         $latestWeight = $allWeightLogs->last()?->weight_kg ?? $user->weight_kg;
         $initialWeight = $allWeightLogs->first()?->weight_kg;
         $weightChange = ($initialWeight && $latestWeight) ? round($latestWeight - $initialWeight, 1) : 0;

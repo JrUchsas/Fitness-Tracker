@@ -185,6 +185,33 @@ class WorkoutController extends Controller
     }
 
     /**
+     * Update user's physical health biometrics (height, weight, age, gender, activity level).
+     */
+    public function updateHealthProfile(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'height_cm' => ['nullable', 'numeric', 'min:50', 'max:300'],
+            'weight_kg' => ['nullable', 'numeric', 'min:1', 'max:500'],
+            'age' => ['nullable', 'integer', 'min:1', 'max:120'],
+            'gender' => ['nullable', 'string', 'in:Male,Female,Other,Prefer not to say'],
+            'activity_level' => ['nullable', 'string', 'in:sedentary,lightly_active,moderately_active,very_active,extra_active'],
+        ]);
+
+        $user = $request->user();
+        $user->update($validated);
+
+        if (isset($validated['weight_kg']) && $validated['weight_kg']) {
+            $user->weightLogs()->create([
+                'weight_kg' => $validated['weight_kg'],
+                'logged_date' => now()->setTimezone('Asia/Dhaka')->format('Y-m-d'),
+                'notes' => 'Updated via Health Profile',
+            ]);
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Health & Biometric profile updated successfully!');
+    }
+
+    /**
      * Calculate consecutive workout active days streak.
      */
     private function calculateStreak(User $user): int
