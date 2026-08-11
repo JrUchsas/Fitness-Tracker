@@ -241,9 +241,9 @@ class WorkoutController extends Controller
 
         for ($i = 1; $i < count($dates); $i++) {
             $prevDate = Carbon::parse($dates[$i])->startOfDay();
-            $diff = (int) $currentDate->diffInDays($prevDate);
+            $expectedPrevDate = $currentDate->copy()->subDay()->format('Y-m-d');
 
-            if ($diff === 1) {
+            if ($prevDate->format('Y-m-d') === $expectedPrevDate) {
                 $streak++;
                 $currentDate = $prevDate;
             } else {
