@@ -217,12 +217,10 @@ class WorkoutController extends Controller
     private function calculateStreak(User $user): int
     {
         $dates = $user->workouts()
-            ->selectRaw('DATE(workout_date) as date')
-            ->groupBy('date')
-            ->orderBy('date', 'desc')
-            ->pluck('date')
-            ->map(fn ($d) => Carbon::parse($d)->setTimezone('Asia/Dhaka')->format('Y-m-d'))
+            ->pluck('workout_date')
+            ->map(fn ($d) => Carbon::parse($d)->format('Y-m-d'))
             ->unique()
+            ->sortDesc()
             ->values()
             ->toArray();
 
@@ -230,20 +228,22 @@ class WorkoutController extends Controller
             return 0;
         }
 
-        $today = now()->setTimezone('Asia/Dhaka')->format('Y-m-d');
-        $yesterday = now()->setTimezone('Asia/Dhaka')->subDay()->format('Y-m-d');
+        $today = now()->format('Y-m-d');
+        $yesterday = now()->subDay()->format('Y-m-d');
 
-        $firstDate = $dates[0];
-        if ($firstDate !== $today && $firstDate !== $yesterday) {
+        $latestDate = $dates[0];
+        if ($latestDate !== $today && $latestDate !== $yesterday) {
             return 0;
         }
 
         $streak = 1;
-        $currentDate = Carbon::parse($firstDate);
+        $currentDate = Carbon::parse($latestDate)->startOfDay();
 
         for ($i = 1; $i < count($dates); $i++) {
-            $prevDate = Carbon::parse($dates[$i]);
-            if ($currentDate->diffInDays($prevDate) === 1) {
+            $prevDate = Carbon::parse($dates[$i])->startOfDay();
+            $diff = (int) $currentDate->diffInDays($prevDate);
+
+            if ($diff === 1) {
                 $streak++;
                 $currentDate = $prevDate;
             } else {
