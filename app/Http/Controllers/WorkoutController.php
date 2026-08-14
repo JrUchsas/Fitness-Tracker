@@ -253,4 +253,49 @@ class WorkoutController extends Controller
 
         return $streak;
     }
+
+    /**
+     * Display all logged workouts with full details and notes.
+     */
+    public function allWorkouts(Request $request): View
+    {
+        $user = $request->user();
+        $typeFilter = $request->input('type');
+        $search = $request->input('search');
+
+        $query = $user->workouts()
+            ->orderBy('workout_date', 'desc')
+            ->orderBy('created_at', 'desc');
+
+        if ($typeFilter && $typeFilter !== 'All') {
+            $query->where('type', $typeFilter);
+        }
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('notes', 'like', "%{$search}%")
+                    ->orWhere('type', 'like', "%{$search}%");
+            });
+        }
+
+        $workouts = $query->paginate(20)->withQueryString();
+
+        $allWorkouts = $user->workouts;
+        $totalCount = $allWorkouts->count();
+        $totalMinutes = $allWorkouts->sum('duration_minutes');
+        $totalHours = round($totalMinutes / 60, 1);
+        $totalCalories = $allWorkouts->sum('calories_burned');
+        $totalDistance = (float) $allWorkouts->sum('distance_km');
+
+        return view('workouts.index', [
+            'workouts' => $workouts,
+            'totalCount' => $totalCount,
+            'totalMinutes' => $totalMinutes,
+            'totalHours' => $totalHours,
+            'totalCalories' => $totalCalories,
+            'totalDistance' => $totalDistance,
+            'typeFilter' => $typeFilter,
+            'search' => $search,
+        ]);
+    }
 }

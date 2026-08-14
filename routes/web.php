@@ -12,6 +12,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [WorkoutController::class, 'index'])->name('dashboard');
+    Route::get('/workouts', [WorkoutController::class, 'allWorkouts'])->name('workouts.index');
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');
     Route::post('/workouts', [WorkoutController::class, 'store'])->name('workouts.store');
     Route::get('/workouts/{workout}/edit', [WorkoutController::class, 'edit'])->name('workouts.edit');

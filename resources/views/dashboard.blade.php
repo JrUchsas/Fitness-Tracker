@@ -662,9 +662,12 @@
                                 <h3 class="text-lg font-bold text-white tracking-tight">Recent Workouts</h3>
                                 <p class="text-xs text-slate-400">Your logged activity history (scroll to view earlier sessions)</p>
                             </div>
-                            <span class="text-xs font-bold px-3 py-1 bg-slate-800 text-slate-300 rounded-full border border-slate-700">
-                                {{ $workouts->total() }} Total Logged
-                            </span>
+                            <a href="{{ route('workouts.index') }}" class="text-xs font-bold px-3.5 py-1.5 bg-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white rounded-full border border-slate-700 hover:border-indigo-500 transition duration-150 flex items-center gap-1.5 shadow-sm group cursor-pointer" title="View all logged workouts with full details and notes">
+                                <span>{{ $workouts->total() }} Total Logged</span>
+                                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform text-indigo-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
                         </div>
 
                         @if($workouts->isEmpty())
