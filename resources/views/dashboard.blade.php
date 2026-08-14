@@ -46,7 +46,7 @@
             
             {{-- Flash Messages --}}
             @if (session('success'))
-                <div class="bg-emerald-950/80 border border-emerald-500/30 text-emerald-200 px-5 py-4 rounded-2xl flex items-center justify-between shadow-lg shadow-emerald-950/40 backdrop-blur-xl" role="alert">
+                <div class="bg-emerald-950 border border-emerald-500/30 text-emerald-200 px-5 py-4 rounded-2xl flex items-center justify-between shadow-lg shadow-emerald-950/40" role="alert">
                     <div class="flex items-center gap-3">
                         <div class="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
                             <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,15 +62,15 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
                 
                 {{-- Card 1: Total Active Time --}}
-                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
-                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all pointer-events-none"></div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all pointer-events-none transform-gpu"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Active Time</p>
                             <h3 class="text-3xl font-black text-white mt-1">
                                 @php
-                                    $hours = floor($weeklyTimeMinutes / 60);
-                                    $mins = $weeklyTimeMinutes % 60;
+                                     $hours = floor($weeklyTimeMinutes / 60);
+                                     $mins = $weeklyTimeMinutes % 60;
                                 @endphp
                                 @if($hours > 0)
                                     {{ $hours }}<span class="text-base font-normal text-slate-400">h</span> {{ $mins }}<span class="text-base font-normal text-slate-400">m</span>
@@ -91,8 +91,8 @@
                 </div>
 
                 {{-- Card 2: Total Distance --}}
-                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
-                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all pointer-events-none"></div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all pointer-events-none transform-gpu"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Distance Logged</p>
@@ -112,8 +112,8 @@
                 </div>
 
                 {{-- Card 3: Total Calories --}}
-                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
-                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all pointer-events-none"></div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all pointer-events-none transform-gpu"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Calories Burned</p>
@@ -133,8 +133,8 @@
                 </div>
 
                 {{-- Card 4: Total Sessions --}}
-                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
-                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all pointer-events-none"></div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all pointer-events-none transform-gpu"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Workouts</p>
@@ -154,8 +154,8 @@
                 </div>
 
                 {{-- Card 5: Current Body Weight --}}
-                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200" x-data="{ openWeightModal: false }">
-                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all pointer-events-none"></div>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-200" x-data="{ openWeightModal: false }">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all pointer-events-none transform-gpu"></div>
                     <div class="flex items-center justify-between relative z-10">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Body Weight</p>
@@ -217,7 +217,7 @@
 
 
             {{-- Health & Fitness Metrics Card (BMI, BMR, TDEE, Ideal Weight) --}}
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl" x-data="{ openHealthModal: false }">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl" x-data="{ openHealthModal: false }">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-800 gap-4">
                     <div>
                         <h3 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
@@ -384,7 +384,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" x-data="{ openGoalsModal: false }">
                 
                 {{-- Weekly Fitness Goals Progress Bars (7 Cols) --}}
-                <div class="lg:col-span-7 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl">
+                <div class="lg:col-span-7 bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
@@ -477,7 +477,7 @@
                 </div>
 
                 {{-- Personal Records / Trophy Room Badges (5 Cols) --}}
-                <div class="lg:col-span-5 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl">
+                <div class="lg:col-span-5 bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl">
                     <div class="mb-6 pb-4 border-b border-slate-800">
                         <h3 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
                             <span class="text-amber-400">🏆</span> Personal Records
@@ -526,7 +526,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" x-data="workoutForm('{{ old('type', 'Indoor Cycling') }}', {{ old('duration_minutes', 30) }}, '{{ old('distance_km', '') }}', '{{ old('speed_kmh', '') }}', '{{ old('calories_burned', '') }}')">
                 
                 {{-- Form Section (5 Columns) --}}
-                <div class="lg:col-span-5 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl">
+                <div class="lg:col-span-5 bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl">
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
                         <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-indigo-500/25">
                             +
@@ -655,151 +655,155 @@
                 </div>
 
                 {{-- Recent Workouts Table Section (7 Columns) --}}
-                <div class="lg:col-span-7 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl backdrop-blur-xl">
-                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
-                        <div>
-                            <h3 class="text-lg font-bold text-white tracking-tight">Recent Workouts</h3>
-                            <p class="text-xs text-slate-400">Your logged activity history and details</p>
-                        </div>
-                        <span class="text-xs font-bold px-3 py-1 bg-slate-800 text-slate-300 rounded-full border border-slate-700">
-                            {{ $workouts->total() }} Total Logged
-                        </span>
-                    </div>
-
-                    @if($workouts->isEmpty())
-                        <div class="text-center py-14 px-4 border-2 border-dashed border-slate-800 rounded-2xl bg-slate-950/40">
-                            <div class="w-16 h-16 bg-slate-900 border border-slate-800 text-slate-400 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
-                                <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
+                <div class="lg:col-span-7 bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-7 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4 pb-4 border-b border-slate-800">
+                            <div>
+                                <h3 class="text-lg font-bold text-white tracking-tight">Recent Workouts</h3>
+                                <p class="text-xs text-slate-400">Your logged activity history (scroll to view earlier sessions)</p>
                             </div>
-                            <h4 class="text-base font-bold text-white">No workouts logged yet</h4>
-                            <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">Fill out the form on the left to start recording your indoor cycling, treadmill, heavyweight training, or yoga sessions!</p>
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-800 text-slate-300 rounded-full border border-slate-700">
+                                {{ $workouts->total() }} Total Logged
+                            </span>
                         </div>
-                    @else
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                                        <th class="pb-3 pr-3">Activity</th>
-                                        <th class="pb-3 px-3">Date & Time</th>
-                                        <th class="pb-3 px-3">Duration</th>
-                                        <th class="pb-3 px-3">Distance</th>
-                                        <th class="pb-3 px-3">Calories</th>
-                                        <th class="pb-3 pl-3 text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-800/60 text-sm">
-                                    @foreach($workouts as $workout)
-                                        <tr class="hover:bg-slate-800/40 transition duration-150">
-                                            
-                                            {{-- Activity Badge & Details --}}
-                                            <td class="py-4 pr-3">
-                                                @php
-                                                    $badgeColors = [
-                                                        'Indoor Cycling' => 'bg-blue-500/10 text-blue-300 border-blue-500/30',
-                                                        'Treadmill' => 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
-                                                        'Heavyweight Training' => 'bg-rose-500/10 text-rose-300 border-rose-500/30',
-                                                        'Jump Rope' => 'bg-amber-500/10 text-amber-300 border-amber-500/30',
-                                                        'Yoga' => 'bg-purple-500/10 text-purple-300 border-purple-500/30',
-                                                        'Other' => 'bg-slate-800 text-slate-300 border-slate-700',
-                                                    ];
-                                                    $badgeClass = $badgeColors[$workout->type] ?? $badgeColors['Other'];
-                                                @endphp
-                                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold border {{ $badgeClass }}">
-                                                    @if($workout->type === 'Indoor Cycling') 🚴
-                                                    @elseif($workout->type === 'Treadmill') 🏃
-                                                    @elseif($workout->type === 'Heavyweight Training') 🏋️
-                                                    @elseif($workout->type === 'Jump Rope') 🪢
-                                                    @elseif($workout->type === 'Yoga') 🧘
-                                                    @else ⚡
-                                                    @endif
-                                                    {{ $workout->type }}
-                                                </span>
 
-                                                {{-- Specific Workout Details --}}
-                                                @if($workout->type === 'Heavyweight Training' && ($workout->weight_kg || $workout->sets))
-                                                    <p class="text-xs text-slate-300 font-semibold mt-1">
-                                                        @if($workout->weight_kg) {{ number_format($workout->weight_kg, 1) }} kg @endif
-                                                        @if($workout->sets && $workout->reps) • {{ $workout->sets }} sets × {{ $workout->reps }} reps @endif
-                                                    </p>
-                                                @elseif($workout->type === 'Jump Rope' && $workout->jumps_count)
-                                                    <p class="text-xs text-slate-300 font-semibold mt-1">
-                                                        {{ number_format($workout->jumps_count) }} jumps
-                                                    </p>
-                                                @elseif(in_array($workout->type, ['Indoor Cycling', 'Treadmill']) && $workout->speed_kmh)
-                                                    <p class="text-xs text-slate-400 mt-1">
-                                                        Speed: <span class="text-slate-200 font-semibold">{{ number_format($workout->speed_kmh, 1) }} km/h</span>
-                                                    </p>
-                                                @endif
-
-                                                @if($workout->notes)
-                                                    <p class="text-xs text-slate-400 mt-0.5 line-clamp-1 italic max-w-xs" title="{{ $workout->notes }}">
-                                                        "{{ $workout->notes }}"
-                                                    </p>
-                                                @endif
-                                            </td>
-
-                                            {{-- Date --}}
-                                            <td class="py-4 px-3 whitespace-nowrap text-xs text-slate-300">
-                                                <div class="font-bold text-white">{{ $workout->workout_date->setTimezone('Asia/Dhaka')->format('d/m/Y') }}</div>
-                                                <div class="text-[11px] text-slate-400">{{ $workout->workout_date->setTimezone('Asia/Dhaka')->format('h:i A') }}</div>
-                                            </td>
-
-                                            {{-- Duration --}}
-                                            <td class="py-4 px-3 whitespace-nowrap font-bold text-white">
-                                                {{ $workout->duration_minutes }} <span class="text-xs font-normal text-slate-400">min</span>
-                                            </td>
-
-                                            {{-- Distance (Cycling / Treadmill only) --}}
-                                            <td class="py-4 px-3 whitespace-nowrap text-slate-300">
-                                                @if(in_array($workout->type, ['Indoor Cycling', 'Treadmill']) && $workout->distance_km)
-                                                    <span class="font-bold text-white">{{ number_format($workout->distance_km, 2) }}</span> <span class="text-xs text-slate-400">km</span>
-                                                @else
-                                                    <span class="text-slate-600 text-xs">—</span>
-                                                @endif
-                                            </td>
-
-                                            {{-- Calories --}}
-                                            <td class="py-4 px-3 whitespace-nowrap text-slate-300">
-                                                @if($workout->calories_burned)
-                                                    <span class="font-bold text-orange-400">{{ number_format($workout->calories_burned) }}</span> <span class="text-xs text-slate-400">kcal</span>
-                                                @else
-                                                    <span class="text-slate-600 text-xs">—</span>
-                                                @endif
-                                            </td>
-
-                                            {{-- Actions --}}
-                                            <td class="py-4 pl-3 text-right whitespace-nowrap">
-                                                <div class="flex items-center justify-end gap-1.5">
-                                                    <a href="{{ route('workouts.edit', $workout) }}" class="p-2 text-slate-400 hover:text-indigo-400 transition-colors rounded-lg hover:bg-slate-800" title="Edit Workout">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                                        </svg>
-                                                    </a>
-                                                    <form action="{{ route('workouts.destroy', $workout) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this workout?');" class="inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="p-2 text-slate-400 hover:text-red-400 transition-colors rounded-lg hover:bg-red-950/40 cursor-pointer" title="Delete Workout">
-                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-
+                        @if($workouts->isEmpty())
+                            <div class="text-center py-14 px-4 border-2 border-dashed border-slate-800 rounded-2xl bg-slate-950/40">
+                                <div class="w-16 h-16 bg-slate-900 border border-slate-800 text-slate-400 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                                    <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-base font-bold text-white">No workouts logged yet</h4>
+                                <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">Fill out the form on the left to start recording your indoor cycling, treadmill, heavyweight training, or yoga sessions!</p>
+                            </div>
+                        @else
+                            <div class="overflow-x-auto overflow-y-auto max-h-[500px] custom-scrollbar pr-1">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="sticky top-0 z-10 bg-slate-900">
+                                        <tr class="border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-900">
+                                            <th class="pb-3 pr-3 bg-slate-900">Activity</th>
+                                            <th class="pb-3 px-3 bg-slate-900">Date & Time</th>
+                                            <th class="pb-3 px-3 bg-slate-900">Duration</th>
+                                            <th class="pb-3 px-3 bg-slate-900">Distance</th>
+                                            <th class="pb-3 px-3 bg-slate-900">Calories</th>
+                                            <th class="pb-3 pl-3 text-right bg-slate-900">Actions</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-800/60 text-sm">
+                                        @foreach($workouts as $workout)
+                                            <tr class="hover:bg-slate-800/40 transition duration-150">
+                                                
+                                                {{-- Activity Badge & Details --}}
+                                                <td class="py-4 pr-3">
+                                                    @php
+                                                        $badgeColors = [
+                                                            'Indoor Cycling' => 'bg-blue-500/10 text-blue-300 border-blue-500/30',
+                                                            'Treadmill' => 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
+                                                            'Heavyweight Training' => 'bg-rose-500/10 text-rose-300 border-rose-500/30',
+                                                            'Jump Rope' => 'bg-amber-500/10 text-amber-300 border-amber-500/30',
+                                                            'Yoga' => 'bg-purple-500/10 text-purple-300 border-purple-500/30',
+                                                            'Other' => 'bg-slate-800 text-slate-300 border-slate-700',
+                                                        ];
+                                                        $badgeClass = $badgeColors[$workout->type] ?? $badgeColors['Other'];
+                                                    @endphp
+                                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-bold border {{ $badgeClass }}">
+                                                        @if($workout->type === 'Indoor Cycling') 🚴
+                                                        @elseif($workout->type === 'Treadmill') 🏃
+                                                        @elseif($workout->type === 'Heavyweight Training') 🏋️
+                                                        @elseif($workout->type === 'Jump Rope') 🪢
+                                                        @elseif($workout->type === 'Yoga') 🧘
+                                                        @else ⚡
+                                                        @endif
+                                                        {{ $workout->type }}
+                                                    </span>
 
-                        {{-- Pagination --}}
-                        <div class="mt-5 pt-4 border-t border-slate-800">
-                            {{ $workouts->links() }}
-                        </div>
-                    @endif
+                                                    {{-- Specific Workout Details --}}
+                                                    @if($workout->type === 'Heavyweight Training' && ($workout->weight_kg || $workout->sets))
+                                                        <p class="text-xs text-slate-300 font-semibold mt-1">
+                                                            @if($workout->weight_kg) {{ number_format($workout->weight_kg, 1) }} kg @endif
+                                                            @if($workout->sets && $workout->reps) • {{ $workout->sets }} sets × {{ $workout->reps }} reps @endif
+                                                        </p>
+                                                    @elseif($workout->type === 'Jump Rope' && $workout->jumps_count)
+                                                        <p class="text-xs text-slate-300 font-semibold mt-1">
+                                                            {{ number_format($workout->jumps_count) }} jumps
+                                                        </p>
+                                                    @elseif(in_array($workout->type, ['Indoor Cycling', 'Treadmill']) && $workout->speed_kmh)
+                                                        <p class="text-xs text-slate-400 mt-1">
+                                                            Speed: <span class="text-slate-200 font-semibold">{{ number_format($workout->speed_kmh, 1) }} km/h</span>
+                                                        </p>
+                                                    @endif
+
+                                                    @if($workout->notes)
+                                                        <p class="text-xs text-slate-400 mt-0.5 line-clamp-1 italic max-w-xs" title="{{ $workout->notes }}">
+                                                            "{{ $workout->notes }}"
+                                                        </p>
+                                                    @endif
+                                                </td>
+
+                                                {{-- Date --}}
+                                                <td class="py-4 px-3 whitespace-nowrap text-xs text-slate-300">
+                                                    <div class="font-bold text-white">{{ $workout->workout_date->setTimezone('Asia/Dhaka')->format('d/m/Y') }}</div>
+                                                    <div class="text-[11px] text-slate-400">{{ $workout->workout_date->setTimezone('Asia/Dhaka')->format('h:i A') }}</div>
+                                                </td>
+
+                                                {{-- Duration --}}
+                                                <td class="py-4 px-3 whitespace-nowrap font-bold text-white">
+                                                    {{ $workout->duration_minutes }} <span class="text-xs font-normal text-slate-400">min</span>
+                                                </td>
+
+                                                {{-- Distance (Cycling / Treadmill only) --}}
+                                                <td class="py-4 px-3 whitespace-nowrap text-slate-300">
+                                                    @if(in_array($workout->type, ['Indoor Cycling', 'Treadmill']) && $workout->distance_km)
+                                                        <span class="font-bold text-white">{{ number_format($workout->distance_km, 2) }}</span> <span class="text-xs text-slate-400">km</span>
+                                                    @else
+                                                        <span class="text-slate-600 text-xs">—</span>
+                                                    @endif
+                                                </td>
+
+                                                {{-- Calories --}}
+                                                <td class="py-4 px-3 whitespace-nowrap text-slate-300">
+                                                    @if($workout->calories_burned)
+                                                        <span class="font-bold text-orange-400">{{ number_format($workout->calories_burned) }}</span> <span class="text-xs text-slate-400">kcal</span>
+                                                    @else
+                                                        <span class="text-slate-600 text-xs">—</span>
+                                                    @endif
+                                                </td>
+
+                                                {{-- Actions --}}
+                                                <td class="py-4 pl-3 text-right whitespace-nowrap">
+                                                    <div class="flex items-center justify-end gap-1.5">
+                                                        <a href="{{ route('workouts.edit', $workout) }}" class="p-2 text-slate-400 hover:text-indigo-400 transition-colors rounded-lg hover:bg-slate-800" title="Edit Workout">
+                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                            </svg>
+                                                        </a>
+                                                        <form action="{{ route('workouts.destroy', $workout) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this workout?');" class="inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="p-2 text-slate-400 hover:text-red-400 transition-colors rounded-lg hover:bg-red-950/40 cursor-pointer" title="Delete Workout">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {{-- Pagination --}}
+                            @if($workouts->hasPages())
+                                <div class="mt-4 pt-3 border-t border-slate-800">
+                                    {{ $workouts->links() }}
+                                </div>
+                            @endif
+                        @endif
+                    </div>
                 </div>
 
             </div>

@@ -121,7 +121,7 @@ test('workout store validation rules prevent invalid entries', function () {
     $response->assertSessionHasErrors(['type', 'duration_minutes', 'workout_date']);
 });
 
-test('recent workouts are ordered by workout_date ascending', function () {
+test('recent workouts are ordered by workout_date descending', function () {
     $user = User::factory()->create();
 
     $workoutLater = Workout::factory()->create([
@@ -139,7 +139,7 @@ test('recent workouts are ordered by workout_date ascending', function () {
     $response = $this->actingAs($user)->get('/dashboard');
 
     $response->assertStatus(200);
-    $response->assertSeeInOrder(['Earlier Workout', 'Later Workout']);
+    $response->assertSeeInOrder(['Later Workout', 'Earlier Workout']);
 });
 
 test('user can select an active week offset to view weekly summary stats', function () {

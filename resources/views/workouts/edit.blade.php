@@ -14,7 +14,7 @@
 
     <div class="py-8">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-10 shadow-2xl backdrop-blur-xl" x-data="workoutEditForm('{{ old('type', $workout->type) }}', {{ old('duration_minutes', $workout->duration_minutes) }}, '{{ old('distance_km', $workout->distance_km) }}', '{{ old('speed_kmh', $workout->speed_kmh) }}', '{{ old('calories_burned', $workout->calories_burned) }}')">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-10 shadow-2xl" x-data="workoutEditForm('{{ old('type', $workout->type) }}', {{ old('duration_minutes', $workout->duration_minutes) }}, '{{ old('distance_km', $workout->distance_km) }}', '{{ old('speed_kmh', $workout->speed_kmh) }}', '{{ old('calories_burned', $workout->calories_burned) }}')">
                 
                 <form action="{{ route('workouts.update', $workout) }}" method="POST" class="space-y-6">
                     @csrf

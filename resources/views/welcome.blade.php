@@ -22,9 +22,9 @@
         <div class="relative min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950/40 via-slate-950 to-slate-950 overflow-hidden flex flex-col justify-between">
             
             {{-- Background ambient lights --}}
-            <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none transform-gpu"></div>
+            <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none transform-gpu"></div>
+            <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-600/15 rounded-full blur-[120px] pointer-events-none transform-gpu"></div>
 
             {{-- Top Navbar --}}
             <header class="relative z-20 border-b border-slate-800/80 backdrop-blur-xl bg-slate-950/60">

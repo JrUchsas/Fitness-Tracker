@@ -37,32 +37,32 @@
 
             {{-- Metric Highlight Badges Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Body Weight</span>
                     <h4 class="text-2xl font-black text-cyan-400 mt-1">{{ $latestWeight ? number_format($latestWeight, 1) : '--' }} <span class="text-xs font-normal text-slate-400">kg</span></h4>
                 </div>
 
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Workouts</span>
                     <h4 class="text-2xl font-black text-white mt-1">{{ number_format($totalWorkouts) }} <span class="text-xs font-normal text-slate-400">sessions</span></h4>
                 </div>
 
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Energy</span>
                     <h4 class="text-2xl font-black text-orange-400 mt-1">{{ number_format($totalCalories) }} <span class="text-xs font-normal text-slate-400">kcal</span></h4>
                 </div>
 
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Distance</span>
                     <h4 class="text-2xl font-black text-emerald-400 mt-1">{{ number_format($totalDistance, 2) }} <span class="text-xs font-normal text-slate-400">km</span></h4>
                 </div>
 
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Heavyweight Volume</span>
                     <h4 class="text-2xl font-black text-rose-400 mt-1">{{ number_format($totalHeavyweightVolume) }} <span class="text-xs font-normal text-slate-400">kg</span></h4>
                 </div>
 
-                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-lg">
+                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-lg">
                     <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Jumps</span>
                     <h4 class="text-2xl font-black text-amber-400 mt-1">{{ number_format($totalJumps) }} <span class="text-xs font-normal text-slate-400">reps</span></h4>
                 </div>
@@ -72,7 +72,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
                 {{-- Chart 1: Daily Calorie Burned Trend (Bar Chart) --}}
-                <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
@@ -87,7 +87,7 @@
                 </div>
 
                 {{-- Chart 2: Daily Distance Covered Trend (Line Chart) --}}
-                <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
@@ -102,7 +102,7 @@
                 </div>
 
                 {{-- Chart 3: Exercise Type Distribution (Doughnut Chart) --}}
-                <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
@@ -117,7 +117,7 @@
                 </div>
 
                 {{-- Chart 4: Daily Active Time (Bar Chart) --}}
-                <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
@@ -132,7 +132,7 @@
                 </div>
 
                 {{-- Chart 5: Body Weight Progression Line Chart (Placed right above monthly comparison) --}}
-                <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl lg:col-span-2">
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl lg:col-span-2">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div>
                             <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">
@@ -152,7 +152,7 @@
             </div>
 
             {{-- Monthly Growth Comparison Grid (Placed at the bottom) --}}
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 shadow-2xl">
                 <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-800">
                     <div>
                         <h3 class="text-base font-bold text-white tracking-tight flex items-center gap-2">

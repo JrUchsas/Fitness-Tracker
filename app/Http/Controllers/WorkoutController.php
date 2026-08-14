@@ -43,9 +43,9 @@ class WorkoutController extends Controller
         }
 
         $workouts = $user->workouts()
-            ->orderBy('workout_date', 'asc')
-            ->orderBy('created_at', 'asc')
-            ->paginate(10)
+            ->orderBy('workout_date', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15)
             ->withQueryString();
 
         $weeklyWorkouts = $user->workouts()

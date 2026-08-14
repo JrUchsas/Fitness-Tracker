@@ -8,13 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
                 <div class="max-w-2xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
                 <div class="max-w-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h3 class="text-lg font-bold text-white">Database Backup & Local Sync</h3>
@@ -26,13 +26,13 @@
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
                 <div class="max-w-2xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl">
                 <div class="max-w-2xl">
                     @include('profile.partials.delete-user-form')
                 </div>

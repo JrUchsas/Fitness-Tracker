@@ -15,6 +15,23 @@
         <style>
             [x-cloak] { display: none !important; }
             body { font-family: 'Outfit', sans-serif; }
+
+            /* Custom sleek scrollbar */
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: rgba(15, 23, 42, 0.6);
+                border-radius: 9999px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: rgba(51, 65, 85, 0.8);
+                border-radius: 9999px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: rgba(99, 102, 241, 0.7);
+            }
         </style>
 
         <!-- Flatpickr Date Picker (DD/MM/YYYY Format) -->
