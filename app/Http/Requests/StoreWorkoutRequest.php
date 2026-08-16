@@ -24,12 +24,22 @@ class StoreWorkoutRequest extends FormRequest
     {
         if ($this->has('workout_date') && $this->workout_date) {
             try {
-                if (preg_match('/^\d{2}\/\d{2}\/\d{4}\s+\d{2}:\d{2}/', $this->workout_date)) {
-                    $formatted = Carbon::createFromFormat('d/m/Y H:i', $this->workout_date)->format('Y-m-d H:i:s');
-                } elseif (preg_match('/^\d{2}\/\d{2}\/\d{4}/', $this->workout_date)) {
-                    $formatted = Carbon::createFromFormat('d/m/Y', $this->workout_date)->startOfDay()->format('Y-m-d H:i:s');
+                $raw = trim((string) $this->workout_date);
+                if (preg_match('/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/', $raw, $m)) {
+                    $day = str_pad($m[1], 2, '0', STR_PAD_LEFT);
+                    $month = str_pad($m[2], 2, '0', STR_PAD_LEFT);
+                    $year = $m[3];
+                    $hour = str_pad($m[4], 2, '0', STR_PAD_LEFT);
+                    $minute = $m[5];
+                    $second = $m[6] ?? '00';
+                    $formatted = "{$year}-{$month}-{$day} {$hour}:{$minute}:{$second}";
+                } elseif (preg_match('/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/', $raw, $m)) {
+                    $day = str_pad($m[1], 2, '0', STR_PAD_LEFT);
+                    $month = str_pad($m[2], 2, '0', STR_PAD_LEFT);
+                    $year = $m[3];
+                    $formatted = "{$year}-{$month}-{$day} 00:00:00";
                 } else {
-                    $formatted = Carbon::parse($this->workout_date)->format('Y-m-d H:i:s');
+                    $formatted = Carbon::parse($raw)->format('Y-m-d H:i:s');
                 }
                 $this->merge(['workout_date' => $formatted]);
             } catch (\Throwable $e) {
