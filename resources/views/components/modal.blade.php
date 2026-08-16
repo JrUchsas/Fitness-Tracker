@@ -46,12 +46,13 @@ $maxWidth = [
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
-    style="display: {{ $show ? 'block' : 'none' }};"
+    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50 flex items-center justify-center min-h-screen"
+    style="display: {{ $show ? 'flex' : 'none' }};"
 >
+    <!-- Backdrop Overlay -->
     <div
         x-show="show"
-        class="fixed inset-0 transform transition-all"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity"
         x-on:click="show = false"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
@@ -59,13 +60,12 @@ $maxWidth = [
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-    >
-        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-md opacity-90"></div>
-    </div>
+    ></div>
 
+    <!-- Modal Dialog Content -->
     <div
         x-show="show"
-        class="mb-6 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
+        class="relative z-10 my-8 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl transform transition-all w-full {{ $maxWidth }} mx-auto text-left"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
