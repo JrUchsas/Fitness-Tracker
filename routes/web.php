@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\DatabaseExportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeightLogController;
 use App\Http\Controllers\WorkoutController;
@@ -22,18 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/health-profile', [WorkoutController::class, 'updateHealthProfile'])->name('health-profile.update');
     Route::post('/weight-logs', [WeightLogController::class, 'store'])->name('weight-logs.store');
     Route::delete('/weight-logs/{weightLog}', [WeightLogController::class, 'destroy'])->name('weight-logs.destroy');
-
-    Route::get('/export-db', function () {
-        $dbPath = file_exists('/var/data/database.sqlite')
-            ? '/var/data/database.sqlite'
-            : database_path('database.sqlite');
-
-        if (! file_exists($dbPath)) {
-            abort(404, 'Database file not found.');
-        }
-
-        return response()->download($dbPath, 'database.sqlite');
-    })->name('export-db');
+    Route::get('/export-db', [DatabaseExportController::class, 'export'])->name('export-db');
 });
 
 Route::middleware('auth')->group(function () {
