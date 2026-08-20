@@ -126,31 +126,6 @@ A modern, high-performance, dark-themed, fully responsive **Indoor Fitness, Biom
 
 ---
 
-## 🗄️ Git & Database Management
-
-To allow local testing and adding workouts without accidentally committing your local database changes or deleting remote data on GitHub, Git's `skip-worktree` feature is used:
-
-### Ignore Local Database Changes (Current Setting)
-```powershell
-git update-index --skip-worktree database/database.sqlite
-```
-- **Preserved on GitHub**: The database structure remains in the remote repository for fresh deployments.
-- **Ignored Locally**: Any new workouts or test logs you add locally will be ignored by `git status` and `git push`.
-
-### Resume Tracking / Push Database Changes
-If you ever want Git to track and push your local database file to GitHub again:
-```powershell
-git update-index --no-skip-worktree database/database.sqlite
-```
-
-### Check Ignored Status
-```powershell
-git ls-files -v | Select-String "database.sqlite"
-```
-*(Shows `S database/database.sqlite` when ignored).*
-
----
-
 ## 🚢 Deployment & Docker Persistence
 
 This application is container-ready for deployment on **Render**, **Railway**, **Fly.io**, or **Laravel Cloud**.
